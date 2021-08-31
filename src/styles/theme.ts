@@ -1,5 +1,5 @@
 const defaultTheme = {
-  color:{
+  colors:{
       gray_100: '#00000F',
       gray_200: '#343940',
       gray_300: '#697380',
@@ -21,9 +21,9 @@ const defaultTheme = {
 
   },
   texts:{
-    main_title:'900 3rem/4.25rem Roboto, sans-serif',//h1
-    title:'700 2rem/3.5rem Roboto, sans-serif',//h2
-    sub_title:'700 1.5rem/3rem Roboto, sans-serif',//h3
+    main_title:'700 3rem/4.25rem Merienda, cursive',//h1
+    title:'700 2rem/3.5rem Merienda, cursive',//h2
+    sub_title:'700 1.5rem/3rem Merienda, cursive',//h3
     main_text:'400 1rem/1.5rem Roboto, sans-serif',//p, a ...
     main_strong:'700 1rem/1.5rem Roboto, sans-serif',//strong
     small_text:'300 0.875rem/1.3125rem Roboto, sans-serif'//p, a, small ..

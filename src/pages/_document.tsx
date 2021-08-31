@@ -49,8 +49,11 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap"
             rel="stylesheet"
           />
-          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={'true'} />
+          <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet" />
+          <link rel="shortcut icon" href="/Icon.svg" type="image/png" />
+          <link rel="icon" href="/Icon.svg" />
           <meta name="theme-color" content="#673AB6" />
         </Head>
         <body>
