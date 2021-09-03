@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Head from 'next/head'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -11,6 +11,7 @@ import { Container } from '../styles/Home'
 import { SignInButton } from '@/components/SignInButton'
 import { GetStaticProps } from 'next'
 import { api } from '@/services/api'
+import { getAllInvites } from './api/invites'
 
 type Gift = {
   id: string
@@ -34,13 +35,18 @@ export default function Home({gifts}:IGiftProps) {
   const [ userID, setUserID ] = useState('')
   const [giftsList, setGiftList] = useState(gifts)
   const formRef = useRef<FormHandles>(null)
+  const [ticket, setTicket] = useState('')
 
   const userRef = session?.userRef
   const userString  = JSON.stringify(userRef)
   useMemo(() => {
     setUserID(userRef ? String(JSON.parse(userString)['@ref'].id) : '')
   },[session])
-
+useMemo(async () => {
+  const invite = await getAllInvites()
+  setTicket(invite.slug)
+  console.log(invite)
+},[session])
   const handleCheck = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const current = event.target.value
 
@@ -101,20 +107,20 @@ export default function Home({gifts}:IGiftProps) {
                       if(gift.userRef === userID){
                         return (
                           <Checkbox
-                          key={gift.index}
-                          id={gift.itemNumber}
-                          name={gift.name}
-                          type="checkbox"
-                          label={gift.name}
-                          isChecked={gift.isSelected}
-                          value={gift.itemNumber}
-                          onChange={handleCheck}
+                            key={gift.index}
+                            id={gift.itemNumber}
+                            name={gift.name}
+                            type="checkbox"
+                            label={gift.name}
+                            isChecked={gift.isSelected}
+                            value={gift.itemNumber}
+                            onChange={handleCheck}
                           />
-                          )
-                        }
-                        if(gift.userRef === '' || !gift.userRef){
-                          return (
-                            <Checkbox
+                        )
+                      }
+                      if(gift.userRef === '' || !gift.userRef){
+                        return (
+                          <Checkbox
                             key={gift.index}
                             id={gift.itemNumber}
                             name={gift.name}
@@ -124,23 +130,24 @@ export default function Home({gifts}:IGiftProps) {
                             value={gift.itemNumber}
                             disabled={gift.isSelected}
                             onChange={handleCheck}
-                            />
-                            )
-                          }
-                          return (
-                            <Checkbox
-                            key={gift.index}
-                            id={gift.itemNumber}
-                            name={gift.name}
-                            type="checkbox"
-                            label={gift.name}
-                            isChecked={gift.isSelected}
-                            value={gift.itemNumber}
-                            onChange={handleCheck}
-                            />
-                            )
-                          })
-                        }
+                          />
+                        )
+                      }
+                      return (
+                        <Checkbox
+                          key={gift.index}
+                          id={gift.itemNumber}
+                          name={gift.name}
+                          type="checkbox"
+                          label={gift.name}
+                          isChecked={gift.isSelected}
+                          value={gift.itemNumber}
+                          onChange={handleCheck}
+                        />
+                      )
+                    })
+                  }
+                  <button><a href={ticket}>Pegar o Seu Convite</a></button>
                 </Form>
               ) : (
                 <SignInButton />
