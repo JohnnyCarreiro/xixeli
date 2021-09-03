@@ -48,8 +48,9 @@ export const InputContainer = styled.div<ContainerProps>`
     padding: 0 10px;
     width: 100%;
 
-    font: 400 1.25rem/1.5rem Roboto, sans-serif;
+    font: 700 1.25rem/1.5rem Roboto, sans-serif;
     text-transform: uppercase;
+    color: ${({theme})=>theme.colors.main};
     &::before {
       content: '';
       /* content: url("/assets/images/check.svg"), ${({theme}) => theme.colors.gray_300}; */
@@ -78,8 +79,14 @@ export const InputContainer = styled.div<ContainerProps>`
       border-radius: 25%;
     }
   }
-  input[type="checkbox"]:checked + label::before {
+  .checked + label::before {
     transform: scale(1) rotateZ(0deg);
+  }
+  .checked + label {
+    color: ${({theme})=>theme.colors.gray_100};
+  }
+  .unchecked + label::before{
+    transform: scale(0) rotateZ(180deg);
   }
   input[type="checkbox"]:disabled{
     opacity: 0.7;
@@ -96,7 +103,7 @@ export const InputContainer = styled.div<ContainerProps>`
     width: 100%;
     min-width: 100%;
     content: '';
-    border-bottom: 2px solid ${({theme}) => theme.colors.gray_200};
+    border-bottom: 3px solid ${({theme}) => theme.colors.gray_300};
   }
   svg{
     margin-right:1rem;
