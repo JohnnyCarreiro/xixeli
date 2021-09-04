@@ -4,8 +4,6 @@ import slugify from 'slugify'
 export async function getAllInvites() {
 
   const session = await getSession()
-  console.log(session)
-
   const user  = session?.user
   const inviteSlug = slugify(String(user?.name), {
     replacement: '-',  // replace spaces with replacement character, defaults to `-`
@@ -24,16 +22,16 @@ export async function getAllInvites() {
 }
 export async function getInviteBySlug(session: Session ) {
 
-  const { user }  = session!
+  // const { user }  = session!
 
   const baseURL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://thumbs-generator.vercel.app'
-  const inviteURL = `${baseURL}/api/thumbnail.png?title=${user!.name}`
+  const inviteURL = `${baseURL}/api/ticket.png?name=${session?.user!.name}`
 
   return {
-    name: user!.name,
-    avatar: user!.image,
+    name: session?.user!.name,
+    avatar: session?.user!.image,
     inviteURL,
   }
 }

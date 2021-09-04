@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import Head from 'next/head'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
@@ -22,10 +22,6 @@ type Gift = {
   userRef?:string
 }
 
-type Checked = {
-  name:string, isSelected:boolean
-}
-
 interface IGiftProps {
   gifts: Array<Gift>
 }
@@ -45,7 +41,6 @@ export default function Home({gifts}:IGiftProps) {
 useMemo(async () => {
   const invite = await getAllInvites()
   setTicket(invite.slug)
-  console.log(invite)
 },[session])
   const handleCheck = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const current = event.target.value
@@ -90,7 +85,7 @@ useMemo(async () => {
       </Head>
       <header>
         <div className="nav">
-          <div className="logo">Chá de Panela da GI</div>
+          <div className="logo"><a href="/" >Chá de Panela da GI</a></div>
           {session && (
             <SignInButton />
           )}

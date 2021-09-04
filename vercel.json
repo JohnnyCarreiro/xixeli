@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/ticket.png", "destination": "/api/ticket" }
+  ]
+}

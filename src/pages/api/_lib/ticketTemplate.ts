@@ -1,4 +1,95 @@
-<!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In  -->
+export default function getTicketTemplate(name: string, avatarURL: string, bgImg:string){
+  return`<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" >
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com" >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap" rel="stylesheet" />
+    <title>Document</title>
+
+    <style>
+      body{
+        margin: 0;
+        font-family: Roboto, sans-serif;
+        color: #FFF;
+        min-width: 1200px;
+        min-height: 556px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .wrapper{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 1200px;
+        max-height: 556px;
+        width: 100vw;
+        height: 100%;
+
+        background: url('..public/assets/images/BG.png');
+        /*background-image:linear-gradient(135deg, rgba(112, 41, 225, 0.6), rgba(247, 141, 30, 0.6)),url('../assets/images/BG.png');*/
+        background-size:cover;
+        background-position:center;
+        background-repeat: no-repeat;
+        margin:auto;
+      }
+      .wrapper > svg {
+        position: absolute;
+        top: 0;
+        left:0;
+        z-index:-1000;
+        width: 100%;
+        heigh: 100%;
+      }
+      .header{
+        font: 700 2rem/3.5rem Merienda, cursive;
+      }
+      .content{
+        width: 100%;
+        font: 700 2rem/3.5rem Merienda, cursive;
+      }
+      .content > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .image {
+        flex:1;
+        max-width: 150px;
+        max-height: 150px;
+        justify-self: center;
+        margin: 0 50px 0 140px;
+      }
+      .content > div > div >  img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        justify-self: center;
+      }
+      .text {
+        width: 100%;
+        flex: 3;
+       }
+      .footer{
+        font: 700 1.5rem/3rem Merienda, cursive;
+        margin-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+    <!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1200px"
 	 height="482px" viewBox="0 0 1200 482" style="enable-background:new 0 0 1200 482;" xml:space="preserve">
 <defs>
@@ -14683,3 +14774,24 @@ zcwRWso6ImE1TySMtCCwdQJLPwYfmdsTk5ogDvbA+SoKREKIhAAAAAAAAAAAAAAAAAAAAAAAAAAA
 e4MQ4v8HkUYFGZOtrosAAAAASUVORK5CYII=" transform="matrix(0.3333 0 0 0.3333 0 0)">
 </image>
 </svg>
+
+      <div class="header">
+        <h1>Presença confirmada</h1>
+      </div>
+      <div class="content">
+        <div>
+          <div class="image" >
+            <img src=${avatarURL ? avatarURL : "avatarURL"} alt="Avatar">
+          </div>
+          <div class="text"><h1>${name}</h1></div>
+        </div>
+      </div>
+      <div class="footer">
+        <h2>Endereço da Bagunça:</h2>
+        <h2>Rua birigui, 94 - Jardim das Indústrias</h2>
+      </div>
+    </div>
+  </body>
+  </html>
+  `
+}

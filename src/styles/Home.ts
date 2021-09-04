@@ -45,7 +45,7 @@ export const Container = styled.div `
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 1300px;
+    height: 100%;
     max-width: 400px;
     margin: 0 auto;
 
@@ -63,6 +63,41 @@ export const Container = styled.div `
         min-width: 390px;
 
         padding-top: 24px;
+
+        button{
+          background-color: ${({theme}) => theme.colors.main};
+          padding: 25px 60px;
+          border: none;
+          border-radius: 8px;
+          margin-top: 20px;
+          width: 100%;
+
+          color: #fff;
+          font: ${({theme}) => theme.texts.main_strong};
+        }
+      }
+      .invitation {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1{
+          text-align: center;
+          margin: 20px 0;
+        }
+        div{
+          justify-self: center;
+          text-align: center;
+          font: ${({theme}) => theme.texts.main_text};
+          margin-bottom: 20px;
+
+          p {
+            padding: 8px 0;
+            &+p{
+              margin-bottom: 20px;
+            }
+          }
+        }
       }
     }
 
