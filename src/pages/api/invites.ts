@@ -26,7 +26,7 @@ export async function getInviteBySlug(session: Session ) {
 
   const baseURL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://thumbs-generator.vercel.app'
+    : 'https://chadepaneladagi.vercel.app'
   const inviteURL = `${baseURL}/api/ticket.png?name=${session?.user!.name}`
 
   return {

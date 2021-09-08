@@ -34,7 +34,7 @@ function Invites(props: InviteProps) {
           <div className="invitation">
             <h1>{name}<br/>Agradecemos a presença</h1>
             <div>
-              <p>Não se esqueça de fazer o download do seu convite </p>
+              <p>Não se esqueça de fazer o download do seu convite!<br/> Aguarde a imagem ser gerada abaixo</p>
               <img width="600" src={inviteURL} alt={name}/>
             </div>
             <h3>Não se esqueça de contribuir ainda mais para nossa comemoração:

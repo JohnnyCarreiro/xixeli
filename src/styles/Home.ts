@@ -41,18 +41,19 @@ export const Container = styled.div `
     }
   }
   section{
-    padding-top: 100px;
+    padding-top: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
-    max-width: 400px;
+    max-width: 390px;
     margin: 0 auto;
 
     .list-container{
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin-bottom: 30px;
       h1{
         align-self: center;
         font: ${({theme}) => theme.texts.title};
@@ -60,8 +61,8 @@ export const Container = styled.div `
       .list{
         display: inline-block;
         width: 100%;
-        min-width: 390px;
-
+        min-width: 320px;
+        max-width: 390px;
         padding-top: 24px;
 
         button{
@@ -96,6 +97,9 @@ export const Container = styled.div `
             &+p{
               margin-bottom: 20px;
             }
+          }
+          img {
+            max-width: 300px;
           }
         }
       }

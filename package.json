@@ -30,7 +30,7 @@
     "@unform/web": "^2.1.6",
     "axios": "^0.21.1",
     "chrome-aws-lambda": "^10.1.0",
-    "faunadb": "^4.4.0",
+    "faunadb": "^4.4.1",
     "next": "^11.1.2",
     "next-auth": "^3.29.0",
     "puppeteer-core": "^10.2.0",

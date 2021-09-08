@@ -2,16 +2,17 @@ import { useCallback, useMemo, useRef, useState } from 'react'
 import Head from 'next/head'
 import { Form } from '@unform/web'
 import { FormHandles } from '@unform/core'
-import { useSession } from 'next-auth/client'
+import { getSession, useSession } from 'next-auth/client'
 import { query as q } from 'faunadb'
 
 import { fauna } from '../services/fauna'
 import { Checkbox } from '@/components/Checkbox'
 import { Container } from '../styles/Home'
 import { SignInButton } from '@/components/SignInButton'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { api } from '@/services/api'
 import { getAllInvites } from './api/invites'
+import { Session } from 'next-auth'
 
 type Gift = {
   id: string
@@ -24,10 +25,12 @@ type Gift = {
 
 interface IGiftProps {
   gifts: Array<Gift>
+  authenticated: Session
 }
 
-export default function Home({gifts}:IGiftProps) {
-  const [ session ] = useSession()
+export default function Home({gifts, authenticated}:IGiftProps) {
+  // const [ session ] = useSession()
+  const [ session, setSession ] = useState(authenticated)
   const [ userID, setUserID ] = useState('')
   const [giftsList, setGiftList] = useState(gifts)
   const formRef = useRef<FormHandles>(null)
@@ -113,7 +116,7 @@ useMemo(async () => {
                           />
                         )
                       }
-                      if(gift.userRef === '' || !gift.userRef){
+                      if(gift.userRef !== userID || !gift.userRef){
                         return (
                           <Checkbox
                             key={gift.index}
@@ -154,13 +157,15 @@ useMemo(async () => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+
+  const authenticated = await getSession({req})
 
   const result = await fauna.query(
     q.Map(
       q.Paginate(
         q.Match(q.Index('all_gifts')),
-        {size:10}
+        {size:50}
       ),
       q.Lambda(['ref'], q.Get(q.Var('ref')))
     )
@@ -182,7 +187,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      gifts:gifts
+      gifts:gifts,
+      authenticated
     },
     // revalidate: 60 * 60 * 24 //24 hours
   }
